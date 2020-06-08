@@ -102,7 +102,7 @@ func (s *CustomerServiceOp) List(options interface{}) ([]Customer, error) {
 
 // ListWithPagination lists customers and return pagination to retrieve next/previous results.
 func (s *CustomerServiceOp) ListWithPagination(options interface{}) ([]Customer, *Pagination, error) {
-	path := fmt.Sprintf("%s.json", productsBasePath)
+	path := fmt.Sprintf("%s.json", customersBasePath)
 	resource := new(CustomersResource)
 	headers := http.Header{}
 
