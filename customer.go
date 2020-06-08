@@ -16,7 +16,7 @@ const customersBasePath = "customers"
 const customersResourceName = "customers"
 
 // linkRegex is used to extract pagination links from customer search results.
-var linkRegex = regexp.MustCompile(`^ *<([^>]+)>; rel="(previous|next)" *$`)
+var linkPaginationRegex = regexp.MustCompile(`^ *<([^>]+)>; rel="(previous|next)" *$`)
 
 // CustomerService is an interface for interfacing with the customers endpoints
 // of the Shopify API.
@@ -133,7 +133,7 @@ func extractPagination(linkHeader string) (*Pagination, error) {
 	}
 
 	for _, link := range strings.Split(linkHeader, ",") {
-		match := linkRegex.FindStringSubmatch(link)
+		match := linkPaginationRegex.FindStringSubmatch(link)
 		// Make sure the link is not empty or invalid
 		if len(match) != 3 {
 			// We expect 3 values:
