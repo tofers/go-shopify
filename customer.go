@@ -114,7 +114,7 @@ func (s *CustomerServiceOp) ListWithPagination(options interface{}) ([]Customer,
 	// Extract pagination info from header
 	linkHeader := headers.Get("Link")
 
-	pagination, err := extractPagination(linkHeader)
+	pagination, err := customerPagination(linkHeader)
 	if err != nil {
 		return nil, nil, err
 	}
@@ -125,7 +125,7 @@ func (s *CustomerServiceOp) ListWithPagination(options interface{}) ([]Customer,
 // extractPagination extracts pagination info from linkHeader.
 // Details on the format are here:
 // https://help.shopify.com/en/api/guides/paginated-rest-results
-func extractPagination(linkHeader string) (*Pagination, error) {
+func customerPagination(linkHeader string) (*Pagination, error) {
 	pagination := new(Pagination)
 
 	if linkHeader == "" {
