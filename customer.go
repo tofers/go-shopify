@@ -15,7 +15,7 @@ import (
 const customersBasePath = "customers"
 const customersResourceName = "customers"
 
-// linkRegex is used to extract pagination links from product search results.
+// linkRegex is used to extract pagination links from customer search results.
 var linkRegex = regexp.MustCompile(`^ *<([^>]+)>; rel="(previous|next)" *$`)
 
 // CustomerService is an interface for interfacing with the customers endpoints
@@ -101,7 +101,7 @@ func (s *CustomerServiceOp) List(options interface{}) ([]Customer, error) {
 }
 
 // ListWithPagination lists customers and return pagination to retrieve next/previous results.
-func (s *CustomerServiceOp) ListWithPagination(options interface{}) ([]Product, *Pagination, error) {
+func (s *CustomerServiceOp) ListWithPagination(options interface{}) ([]Customer, *Pagination, error) {
 	path := fmt.Sprintf("%s.json", productsBasePath)
 	resource := new(CustomersResource)
 	headers := http.Header{}
