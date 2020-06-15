@@ -48,7 +48,7 @@ type PriceRule struct {
 
 // PriceRuleResource represents the result from the price_rules/X.json endpoint
 type PriceRuleResource struct {
-	PriceRule *PriceRule `json:"price_rules"`
+	PriceRule *PriceRule `json:"price_rule"`
 }
 
 // PriceRulesResource is the result from the price_rules.json endpoint
