@@ -11,12 +11,12 @@ const priceRuleBasePath = "price_rules"
 // of the Shopify API.
 // See: https://shopify.dev/docs/admin-api/rest/reference/discounts/pricerule
 type PriceRuleService interface {
-	Create(int64, PriceRule) (*PriceRule, error)
-	Update(int64, PriceRule) (*PriceRule, error)
+	Create(PriceRule) (*PriceRule, error)
+	Update(PriceRule) (*PriceRule, error)
 	Count(interface{}) (int, error)
 	List(int64) ([]PriceRule, error)
-	Get(int64, int64) (*PriceRule, error)
-	Delete(int64, int64) error
+	Get(int64) (*PriceRule, error)
+	Delete(int64) error
 }
 
 // PriceRuleServiceOp handles communication with the discount code
@@ -27,7 +27,7 @@ type PriceRuleServiceOp struct {
 
 // PriceRule represents a Shopify Discount Code
 type PriceRule struct {
-	Id                int64  `json:"id,omitempty"`
+	ID                int64  `json:"id,omitempty"`
 	Title             string `json:"title,omitempty"`
 	TargetType        string `json:"target_type,omitempty"`
 	TargetSelection   string `json:"target_selection,omitempty"`
@@ -67,7 +67,7 @@ func (s *PriceRuleServiceOp) Create(price PriceRule) (*PriceRule, error) {
 
 // Update an existing  price rule
 func (s *PriceRuleServiceOp) Update(price PriceRule) (*PriceRule, error) {
-	path := fmt.Sprintf("%s/%d.json", priceRuleBasePath, price.Id)
+	path := fmt.Sprintf("%s/%d.json", priceRuleBasePath, price.ID)
 	wrappedData := PriceRuleResource{PriceRule: &price}
 	resource := new(PriceRuleResource)
 	err := s.client.Put(path, wrappedData, resource)
@@ -83,8 +83,8 @@ func (s *PriceRuleServiceOp) List(options interface{}) ([]PriceRule, error) {
 }
 
 // Get a single discount code
-func (s *PriceRuleServiceOp) Get(priceRuleID int64) (*PriceRule, error) {
-	path := fmt.Sprintf("%s/%v.json", priceRuleBasePath, priceRuleID)
+func (s *PriceRuleServiceOp) Get(price PriceRule) (*PriceRule, error) {
+	path := fmt.Sprintf("%s/%v.json", priceRuleBasePath, price.ID)
 	resource := new(PriceRuleResource)
 	err := s.client.Get(path, resource, nil)
 	return resource.PriceRule, err
