@@ -14,7 +14,7 @@ type PriceRuleService interface {
 	Create(PriceRule) (*PriceRule, error)
 	Update(PriceRule) (*PriceRule, error)
 	Count(interface{}) (int, error)
-	List(int64) ([]PriceRule, error)
+	List(interface{}) ([]PriceRule, error)
 	Get(int64) (*PriceRule, error)
 	Delete(int64) error
 }
