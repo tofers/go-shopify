@@ -33,7 +33,7 @@ type PriceRule struct {
 	TargetSelection   string `json:"target_selection,omitempty"`
 	AllocationMethod  string `json:"allocation_method,omitempty"`
 	ValueType         string `json:"value_type,omitempty"`
-	Value             int    `json:"value,string,omitempty"`
+	Value             string `json:"value,omitempty"`
 	CustomerSelection string `json:"customer_selection,omitempty"`
 
 	UsageLimit      int  `json:"usage_limit,omitempty"`
