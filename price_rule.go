@@ -67,7 +67,7 @@ func (s *PriceRuleServiceOp) Create(price PriceRule) (*PriceRule, error) {
 
 // Update an existing  price rule
 func (s *PriceRuleServiceOp) Update(price PriceRule) (*PriceRule, error) {
-	path := fmt.Sprintf("%s/%d.json", priceRuleBasePath, price.ID)
+	path := fmt.Sprintf("%s/%d.json", priceRuleBasePath, price.Id)
 	wrappedData := PriceRuleResource{PriceRule: &price}
 	resource := new(PriceRuleResource)
 	err := s.client.Put(path, wrappedData, resource)
@@ -78,13 +78,13 @@ func (s *PriceRuleServiceOp) Update(price PriceRule) (*PriceRule, error) {
 func (s *PriceRuleServiceOp) List(options interface{}) ([]PriceRule, error) {
 	path := fmt.Sprintf("%s.json", priceRuleBasePath)
 	resource := new(PriceRulesResource)
-	err := s.client.Get(path, resource, nil)
+	err := s.client.Get(path, resource, options)
 	return resource.PriceRule, err
 }
 
 // Get a single discount code
 func (s *PriceRuleServiceOp) Get(priceRuleID int64) (*PriceRule, error) {
-	path := fmt.Sprintf("%s.json", priceRuleBasePath)
+	path := fmt.Sprintf("%s/%v.json", priceRuleBasePath, priceRuleID)
 	resource := new(PriceRuleResource)
 	err := s.client.Get(path, resource, nil)
 	return resource.PriceRule, err
