@@ -83,8 +83,8 @@ func (s *PriceRuleServiceOp) List(options interface{}) ([]PriceRule, error) {
 }
 
 // Get a single discount code
-func (s *PriceRuleServiceOp) Get(price PriceRule) (*PriceRule, error) {
-	path := fmt.Sprintf("%s/%v.json", priceRuleBasePath, price.ID)
+func (s *PriceRuleServiceOp) Get(priceRuleID int64) (*PriceRule, error) {
+	path := fmt.Sprintf("%s/%v.json", priceRuleBasePath, priceRuleID)
 	resource := new(PriceRuleResource)
 	err := s.client.Get(path, resource, nil)
 	return resource.PriceRule, err
