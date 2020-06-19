@@ -26,7 +26,7 @@ type Collect struct {
 	ID           int64      `json:"id,omitempty"`
 	CollectionID int64      `json:"collection_id,omitempty"`
 	ProductID    int64      `json:"product_id,omitempty"`
-	Featured     bool       `json:"featured,omitempty"`
+	//Featured     bool       `json:"featured,omitempty"` // old parametr
 	CreatedAt    *time.Time `json:"created_at,omitempty"`
 	UpdatedAt    *time.Time `json:"updated_at,omitempty"`
 	Position     int        `json:"position,omitempty"`
