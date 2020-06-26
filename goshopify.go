@@ -386,6 +386,10 @@ func (c *Client) doGetHeaders(req *http.Request, v interface{}) (http.Header, er
 	c.DeprecatedReason = resp.Header.Get("X-Shopify-Api-Deprecated-Reason")
 	c.VersionWarning = resp.Header.Get("X-Shopify-Api-Version-Warning")
 
+	c.log.Debugf("ApiVersion %s", c.ApiVersion)
+	c.log.Debugf("DeprecatedReason %s", c.DeprecatedReason)
+	c.log.Debugf("VersionWarning %s", c.VersionWarning)
+
 	return resp.Header, nil
 }
 
