@@ -80,6 +80,10 @@ type Client struct {
 
 	RateLimits RateLimitInfo
 
+	ApiVersion       string
+	DeprecatedReason string
+	VersionWarning   string
+
 	// Services used for communicating with the API
 	Product                    ProductService
 	CustomCollection           CustomCollectionService
@@ -377,6 +381,10 @@ func (c *Client) doGetHeaders(req *http.Request, v interface{}) (http.Header, er
 	}
 
 	c.RateLimits.RetryAfterSeconds, _ = strconv.ParseFloat(resp.Header.Get("Retry-After"), 64)
+
+	c.ApiVersion = resp.Header.Get("X-Shopify-Api-Version")
+	c.DeprecatedReason = resp.Header.Get("X-Shopify-Api-Deprecated-Reason")
+	c.VersionWarning = resp.Header.Get("X-Shopify-Api-Version-Warning")
 
 	return resp.Header, nil
 }
